@@ -1,17 +1,19 @@
+package day1
+
 import java.util.regex.Pattern
 
 
-val LETTERN_PATTERN = Pattern.compile("([1-9]|one|two|three|four|five|six|seven|eight|nine)")
+val LETTERN_PATTERN = Pattern.compile("(?=([1-9]|one|two|three|four|five|six|seven|eight|nine))")
 val VALUES = mapOf(
-        "one" to "1",
-        "two" to "2",
-        "three" to "3",
-        "four" to "4",
-        "five" to "5",
-        "six" to "6",
-        "seven" to "7",
-        "eight" to "8",
-        "nine" to "9"
+    "one" to "1",
+    "two" to "2",
+    "three" to "3",
+    "four" to "4",
+    "five" to "5",
+    "six" to "6",
+    "seven" to "7",
+    "eight" to "8",
+    "nine" to "9"
 )
 
 fun main() {
@@ -28,9 +30,9 @@ fun main() {
 private fun getValue(string: String) = VALUES[string] ?: string
 
 private fun getCalibrationValue(input: String) = input.split("\n")
-        .map { a -> LETTERN_PATTERN.matcher(a) }
-        .map { matcher -> matcher.results().map { result -> result.group(0) }.toList() }
-        .sumOf { numbers -> (getValue(numbers.first()) + "" + getValue(numbers.last())).toInt() }
+    .map { a -> LETTERN_PATTERN.matcher(a) }
+    .map { matcher -> matcher.results().map { result -> result.group(1) }.toList() }
+    .sumOf { numbers -> (getValue(numbers.first()) + "" + getValue(numbers.last())).toInt() }
 
 val exampleInput1 = """
         1abc2
