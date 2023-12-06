@@ -16,7 +16,7 @@ fun main() {
     cards.forEach { card ->
         val matchingNumbers = card.matchingNumbers()
         if (matchingNumbers != 0) {
-            var amountOfCurrentCards = (extraWinningCopies[card.id] ?: 0) + 1
+            val amountOfCurrentCards = (extraWinningCopies[card.id] ?: 0) + 1
             for (i in 1..matchingNumbers) {
                 extraWinningCopies.merge(card.id + i, amountOfCurrentCards)
                 { old, value -> old + value }
